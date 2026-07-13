@@ -1,6 +1,6 @@
-var date = {
+var data = {
     title: [
-        "So Far So Fake",
+       
         "Call Out my name",
         "Do I wanna know",
         "Freaked out",
@@ -14,7 +14,7 @@ var date = {
 
     ],
     song: [
-        "music/So Far So Fake.mp3",
+      
         "music/Call Out my name.mp3",
         "music/Do I wanna know.mp3",
         "music/Freaked out.mp3",
@@ -28,7 +28,7 @@ var date = {
     ],
     
     poster: [
-        "https://i.pinimg.com/736x/3c/8d/a4/3c8da421c0a1aa85804bf6aa23f02a2b.jpg",
+      
         "https://i.pinimg.com/1200x/c6/b2/33/c6b2339d79aa7bf4ad318235d19b618f.jpg",
         "https://i.pinimg.com/1200x/fc/2e/22/fc2e22b867d7ccf7158aeb7b56ec9a40.jpg",
         "https://i.pinimg.com/1200x/71/65/b5/7165b53977fb6cbb554ec8c64459ccc1.jpg",
@@ -44,4 +44,39 @@ var date = {
 
     
 }
+
+let song = new Audio()
+let currentSong = 0
+window.onload = function () {
+    playSong()
+
+}
+
+function playSong(){
+    song.src = data.song[currentSong]
+    let songTitle = document.getElementById("songTitle")
+    songTitle.textContent = data.title[currentSong]
+    let img = document.getElementById("row1")
+    img.style.backgroundImage = "url(" + data.poster[currentSong] + ")"
+    let main = document.getElementById("main")
+    main.style.backgroundImage = "url(" + data.poster[currentSong] + ")"
+    song.play
+   
+}
+
+function playOrPauseSong(){
+    let play = document.getElementById("play") 
+    if(song.paused){
+        song.play()
+       play.src = "images/pause.png"
+
+    }else {
+        song.pause()
+        play.src = "images/play-button-arrowhead.png"
+    }
+
+}
+
+
+
 
