@@ -1,7 +1,6 @@
 var data = {
     title: [
-        "Call_Out_my_name",
-        "Do_I_wanna_know",
+        "Call_Out_my_name",      
         "Freaked_out",
         "Gladiator",
         "Mala_ft_Anuel_AA",
@@ -15,12 +14,12 @@ var data = {
     //
     song: [     
         "music/Call_Out_my_name.mp3",
-        "music/Do_I_wanna_know.mp3",
+
         "music/Freaked_out.mp3",
         "music/Gladiator.mp3",
         "music/Mala_ft_Anuel_AA.mp3",
         "music/São_Paulo.mp3",
-        "music/Secret.mp3",
+        "music/Sekret.mp3",
         "music/Swim.mp3",
         "music/The_Walls.mp3",
         "music/Timeless.mp3"
@@ -28,7 +27,6 @@ var data = {
     
     poster: [
         "https://i.pinimg.com/1200x/c6/b2/33/c6b2339d79aa7bf4ad318235d19b618f.jpg",
-        "https://i.pinimg.com/1200x/fc/2e/22/fc2e22b867d7ccf7158aeb7b56ec9a40.jpg",
         "https://i.pinimg.com/1200x/71/65/b5/7165b53977fb6cbb554ec8c64459ccc1.jpg",
         "https://i.pinimg.com/1200x/bb/48/fc/bb48fc0e9cafa092726bd66293a3dcba.jpg",
         "https://i.pinimg.com/1200x/36/c5/4e/36c54e42ce212d7c3b756dfbacd18461.jpg",
@@ -38,7 +36,25 @@ var data = {
         "https://i.pinimg.com/736x/d6/88/a7/d688a74eeb21e7ac30feb2589b92c184.jpg",
         "https://i.pinimg.com/736x/b1/71/37/b171374154470dd6b024bf3b29bc9479.jpg"
     
+    ],
+   
+
+    color: [
+        "#4A0303",
+        "#ffa455d1",
+        "#4A181B",
+        "#45352B",
+        "#8A0A0A",
+        "#536882",
+        "#630909",
+        "#3F2F57",
+        "#2E2930"
     ]
+
+
+
+   
+    
 
     
 }
@@ -58,7 +74,11 @@ function playSong(){
     img.style.backgroundImage = "url(" + data.poster[currentSong] + ")"
     let main = document.getElementById("main")
     main.style.backgroundImage = "url(" + data.poster[currentSong] + ")"
-    song.play
+    let play = document.getElementsByClassName("play")
+    play[0].style.backgroundColor = data.color[currentSong]
+    console.log(play[0]);
+    
+    song.play()
    
 }
 
@@ -113,12 +133,16 @@ function totalTime(seconds){
 }
 
 function next(){
+    let div1 = document.getElementsByClassName('.play')
+    
     currentSong++
+
     if(currentSong >= data.song.length){
         currentSong = 0
 
     }
     playSong()
+    div1.style.backgroundColor = 'blue'
     play.src = "images/pause.png"
 
 }
@@ -144,4 +168,24 @@ function muted (){
         song.src = "images/volume-mute.png"
     }
 }
+
+function increase(){
+    let mute = document.getElementById("mute")
+    song.volume += 0.2
+    if(song.volume >= 0.1){
+        mute.src = "images/volume.png"
+       
+
+    }
+}
+
+function decrease(){
+    let mute = document.getElementById("mute")
+    song.volume -= 0.2
+    if(song.volume <= 0.1){
+        mute.src = "images/volume-mute.png"
+    }
+
+}
+
 
